@@ -1,13 +1,18 @@
 package com.integracaomultimercado.client;
 
-import com.integracaomultimercado.model.Dominio;
+import com.integracaomultimercado.model.DominioNPaginado;
+import com.integracaomultimercado.model.DominioPaginado;
+import com.integracaomultimercado.model.PessoaCongenerePaginado;
 import com.integracaomultimercado.oauthfeign.OAuthFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+/**
+ * CLIENTE HTTP UTILIZANDO FEIGN
+ *
+ * @author Wenner
+ */
 
 @FeignClient(
         name = "multimercado-client",
@@ -20,5 +25,41 @@ public interface MultiMercadoClient {
             value = "/dominios/classes-bonus",
             method = RequestMethod.GET
     )
-    String getClasseBonus();
+    DominioNPaginado getClasseBonus();
+
+    @RequestMapping(
+            value = "/dominios/origens-bonus",
+            method = RequestMethod.GET
+    )
+    DominioPaginado getOrigemBonus();
+
+    @RequestMapping(
+            value = "/dominios/tipos-seguros",
+            method = RequestMethod.GET
+    )
+    DominioPaginado getTiposSeguros();
+
+    @RequestMapping(
+            value = "/dominios/pessoas/tipos",
+            method = RequestMethod.GET
+    )
+    DominioPaginado getTiposPessoas();
+
+    @RequestMapping(
+            value = "/dominios/documentos/tipos",
+            method = RequestMethod.GET
+    )
+    DominioPaginado getTiposDocumentos();
+
+    @RequestMapping(
+            value = "/dominios/telefones/finalidades",
+            method = RequestMethod.GET
+    )
+    DominioPaginado getFinalidadesTelefones();
+
+    @RequestMapping(
+            value = "/dominios/pessoas/congeneres",
+            method = RequestMethod.GET
+    )
+    PessoaCongenerePaginado getCongeneres();
 }
