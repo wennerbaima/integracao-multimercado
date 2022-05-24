@@ -5,8 +5,7 @@ import com.integracaomultimercado.model.DominioPaginado;
 import com.integracaomultimercado.model.PessoaCongenerePaginado;
 import com.integracaomultimercado.oauthfeign.OAuthFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * CLIENTE HTTP UTILIZANDO FEIGN
@@ -15,51 +14,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @FeignClient(
-        name = "multimercado-client",
+        name = "cliente-multimercado",
         url = "https://portoapi-sandbox.portoseguro.com.br/automovel/parceiro-multimercado/v1",
         configuration = OAuthFeignConfig.class
 )
 public interface MultiMercadoClient {
 
-    @RequestMapping(
-            value = "/dominios/classes-bonus",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/classes-bonus")
     DominioNPaginado getClasseBonus();
 
-    @RequestMapping(
-            value = "/dominios/origens-bonus",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/origens-bonus")
     DominioPaginado getOrigemBonus();
 
-    @RequestMapping(
-            value = "/dominios/tipos-seguros",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/tipos-seguros")
     DominioPaginado getTiposSeguros();
 
-    @RequestMapping(
-            value = "/dominios/pessoas/tipos",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/pessoas/tipos")
     DominioPaginado getTiposPessoas();
 
-    @RequestMapping(
-            value = "/dominios/documentos/tipos",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/documentos/tipos")
     DominioPaginado getTiposDocumentos();
 
-    @RequestMapping(
-            value = "/dominios/telefones/finalidades",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/telefones/finalidades")
     DominioPaginado getFinalidadesTelefones();
 
-    @RequestMapping(
-            value = "/dominios/pessoas/congeneres",
-            method = RequestMethod.GET
-    )
+    @GetMapping("/dominios/pessoas/congeneres")
     PessoaCongenerePaginado getCongeneres();
 }

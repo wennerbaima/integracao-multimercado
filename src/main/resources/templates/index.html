@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MultiMercado</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3>TIPOS DE SEGUROS</h3>
+            <select class="form-control">
+                <option th:each="tipoSeguro : ${tiposSeguros}" th:value="${tipoSeguro.codigo}" th:text="${tipoSeguro.descricao}"></option>
+            </select>
+        </div>
+        <h3>SEGURADO</h3>
+        <h4>Tipo de Pessoa</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="tipoPessoa : ${tiposPessoas}" th:value="${tipoPessoa.codigo}" th:text="${tipoPessoa.descricao}"></option>
+            </select>
+        </div>
+        <h4>Tipo de Documento</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="tipoDocumento : ${tiposDocumentos}" th:value="${tipoDocumento.codigo}" th:text="${tipoDocumento.descricao}"></option>
+            </select>
+        </div>
+        <h4>Número do Documento</h4>
+        <div class="row">
+            <input type="text" name="numeroDocumento" th:value="*{numeroDocumento}" />
+        </div>
+        <h4>E-mail</h4>
+        <div class="row">
+            <input type="text" name="email" th:value="*{email}" />
+        </div>
+        <h4>Tipo de Finalidade do Telefone</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="finalidadeTelefone : ${finalidadesTelefones}" th:value="${finalidadeTelefone.codigo}" th:text="${finalidadeTelefone.descricao}"></option>
+            </select>
+        </div>
+        <h4>DDD do Telefone</h4>
+        <div class="row">
+            <input type="text" name="dddTelefone" th:value="*{dddTelefone}" />
+        </div>
+        <h4>Número do Telefone</h4>
+        <div class="row">
+            <input type="text" name="numeroTelefone" th:value="*{numeroTelefone}" />
+        </div>
+        <h4>Cep Pernoite</h4>
+        <div class="row">
+            <input type="text" name="cepPernoite" th:value="*{cepPernoite}" />
+        </div>
+        <!--<h4>Susep</h4>
+        <div class="row">
+            <input type="text" name="susep" th:value="*{susep}" />
+        </div>-->
+        <h4>Tipo de Congênere</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="congenere : ${congeneres}" th:value="${congenere.codigoSusepCongenere}" th:text="${congenere.nomeLegalPessoa}"></option>
+            </select>
+        </div>
+        <h4>Classe do Bônus</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="classeBonus : ${classesBonus}" th:value="${classeBonus.codigo}" th:text="${classeBonus.descricao}"></option>
+            </select>
+        </div>
+        <h4>Origem do Bônus</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="origemBonus : ${origensBonus}" th:value="${origemBonus.codigo}" th:text="${origemBonus.descricao}"></option>
+            </select>
+        </div>
+
+        <h3>CONDUTOR</h3>
+        <h4>Tipo de Pessoa</h4>
+        <div class="row">
+            <select class="form-control">
+                <option th:each="tipoPessoa : ${tiposPessoas}" th:value="${tipoPessoa.codigo}" th:text="${tipoPessoa.descricao}"></option>
+            </select>
+        </div>
+    </div>
+</body>
+</html>
