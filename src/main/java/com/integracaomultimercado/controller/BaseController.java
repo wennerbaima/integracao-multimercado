@@ -1,16 +1,19 @@
 package com.integracaomultimercado.controller;
 
+import com.integracaomultimercado.client.MultiMercadoClient;
 import com.integracaomultimercado.model.Dominio;
 import com.integracaomultimercado.model.PessoaCongenere;
-import com.integracaomultimercado.model.PessoaCongenerePaginado;
+import com.integracaomultimercado.model.ofertas.RequestOfertas;
+import com.integracaomultimercado.model.ofertas.ResponseOfertas;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class BaseController {
 
     @Autowired
@@ -22,9 +25,12 @@ public class BaseController {
     @Autowired
     DominiosBonusController dominiosBonusController;
 
+    @Autowired
+    MultiMercadoClient multiMercadoClient;
+
     @GetMapping
-    public ModelAndView getFormulario() {
-        ModelAndView mv = new ModelAndView("index.html");
+    public String showFormulario(Model model) {
+
         List<Dominio> tiposSeguros = dominiosGeraisController.getTiposSeguros().getValores();
         List<Dominio> tiposPessoas = dominiosPessoasController.getTiposPessoas().getValores();
         List<Dominio> tiposDocumentos = dominiosPessoasController.getTiposDocumentos().getValores();
@@ -33,14 +39,22 @@ public class BaseController {
         List<Dominio> classesBonus = dominiosBonusController.getClasseBonus().getValores();
         List<Dominio> origensBonus = dominiosBonusController.getOrigemBonus().getValores();
 
-        mv.addObject("tiposSeguros", tiposSeguros);
-        mv.addObject("tiposPessoas", tiposPessoas);
-        mv.addObject("tiposDocumentos", tiposDocumentos);
-        mv.addObject("finalidadesTelefones", finalidadesTelefones);
-        mv.addObject("congeneres", congeneres);
-        mv.addObject("classesBonus", classesBonus);
-        mv.addObject("origensBonus", origensBonus);
+        model.addAttribute("requestOfertas", new RequestOfertas());
+        model.addAttribute("tiposSeguros", tiposSeguros);
+        model.addAttribute("tiposPessoas", tiposPessoas);
+        model.addAttribute("tiposDocumentos", tiposDocumentos);
+        model.addAttribute("finalidadesTelefones", finalidadesTelefones);
+        model.addAttribute("congeneres", congeneres);
+        model.addAttribute("classesBonus", classesBonus);
+        model.addAttribute("origensBonus", origensBonus);
 
-        return mv;
+        return "index.html";
+    }
+
+    @PostMapping
+    public String getOfetas(@ModelAttribute RequestOfertas requestOfertas, Model model) {
+        ResponseOfertas responseOfertas = multiMercadoClient.getOfertas(requestOfertas);
+        model.addAttribute("responseOfertas", responseOfertas);
+        return "result.html";
     }
 }

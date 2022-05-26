@@ -3,9 +3,13 @@ package com.integracaomultimercado.client;
 import com.integracaomultimercado.model.DominioNPaginado;
 import com.integracaomultimercado.model.DominioPaginado;
 import com.integracaomultimercado.model.PessoaCongenerePaginado;
+import com.integracaomultimercado.model.ofertas.RequestOfertas;
+import com.integracaomultimercado.model.ofertas.ResponseOfertas;
 import com.integracaomultimercado.oauthfeign.OAuthFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * CLIENTE HTTP UTILIZANDO FEIGN
@@ -40,4 +44,10 @@ public interface MultiMercadoClient {
 
     @GetMapping("/dominios/pessoas/congeneres")
     PessoaCongenerePaginado getCongeneres();
+
+    @GetMapping("/veiculos")
+    String getVeiculo();
+
+    @PostMapping("/ofertas/cotacoes")
+    ResponseOfertas getOfertas(@RequestBody RequestOfertas requestOfertas);
 }

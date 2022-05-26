@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Melhores Ofertas</title>
+</head>
+<body>
+    <span><b>Número Cotação:</b> </span><span th:text="${responseOfertas.numeroCotacao}"></span><br/>
+    <span><b>Descrição:</b> </span><span th:text="${responseOfertas.statusCotacao[0].descricao}"></span><br/>
+    <span><b>Data de criação:</b> </span><span th:text="${responseOfertas.dataCriacao}"></span>
+</body>
+</html>
