@@ -4,12 +4,12 @@ import com.integracaomultimercado.client.MultiMercadoClient;
 import com.integracaomultimercado.model.Dominio;
 import com.integracaomultimercado.model.PessoaCongenere;
 import com.integracaomultimercado.model.ofertas.RequestOfertas;
-import com.integracaomultimercado.model.ofertas.ResponseOfertas;
+import com.integracaomultimercado.model.parcelas.PlanoParcelamentoImpressao;
+import com.integracaomultimercado.model.response.CotacaoRetorno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -53,8 +53,15 @@ public class BaseController {
 
     @PostMapping
     public String getOfetas(@ModelAttribute RequestOfertas requestOfertas, Model model) {
-        ResponseOfertas responseOfertas = multiMercadoClient.getOfertas(requestOfertas);
-        model.addAttribute("responseOfertas", responseOfertas);
+        CotacaoRetorno cotacaoRetorno = multiMercadoClient.getOfertas(requestOfertas);
+        model.addAttribute("cotacaoRetorno", cotacaoRetorno);
         return "result.html";
+    }
+
+    @GetMapping("/parcelas/cotacao/{numeroCotacao}/orcamento/{codigoOrcamento}")
+    public String getParcelas(Model model, @PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigoOrcamento") Integer codigoOrcamento) {
+        List<PlanoParcelamentoImpressao> planosParcelamento = multiMercadoClient.getParcelas(numeroCotacao, codigoOrcamento);
+        model.addAttribute("planosParcelamento", planosParcelamento);
+        return "planos-parcelamento.html";
     }
 }

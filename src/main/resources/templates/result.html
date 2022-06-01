@@ -6,8 +6,21 @@
     <title>Melhores Ofertas</title>
 </head>
 <body>
-    <span><b>Número Cotação:</b> </span><span th:text="${responseOfertas.numeroCotacao}"></span><br/>
-    <span><b>Descrição:</b> </span><span th:text="${responseOfertas.statusCotacao[0].descricao}"></span><br/>
-    <span><b>Data de criação:</b> </span><span th:text="${responseOfertas.dataCriacao}"></span>
+    <span><b>Número Cotação:</b> </span><span th:text="${cotacaoRetorno.numeroCotacao}"></span><br/>
+    <span><b>Descrição:</b> </span><span th:text="${cotacaoRetorno.statusCotacao[0].descricao}"></span><br/>
+    <span><b>Data de criação:</b> </span><span th:text="${cotacaoRetorno.dataCriacao}"></span><br/>
+    <br/>
+    <span><b>ORÇAMENTOS:</b></span><br/>
+    <div th:each="orcamento : ${cotacaoRetorno.orcamentos}">
+        <span><b>Código:</b> </span><span th:text="${orcamento.codigo}"></span>
+        <span><b>Início Vigência:</b> </span><span th:text="${orcamento.inicioVigencia}"></span><br/>
+        <span><b>Fim Vigência:</b> </span><span th:text="${orcamento.fimVigencia}"></span><br/>
+        <span><b>Empresa:</b> </span><span th:text="${orcamento.empresa}"></span><br/>
+        <span><b>Valor Prêmio Final:</b> </span><span th:text="${orcamento.valorPremioFinal}"></span><br/>
+        <span><b>Valor Prêmio Final Cartão:</b> </span><span th:text="${orcamento.valorPremioFinalCartao}"></span><br/>
+        <span><b>Valor Prêmio sem IOF:</b> </span><span th:text="${orcamento.valorPremioSemIOF}"></span><br/>
+        <span><b>Valor Monetário IOF:</b> </span><span th:text="${orcamento.valorMonetarioIOF}"></span><br/>
+        <a class="btn btn-primary btn-sm" th:href="@{'/parcelas/cotacao/' +${cotacaoRetorno.numeroCotacao}+ '/orcamento/' +${orcamento.codigo}}">Consultar Parcelas</a><br/><br/>
+    </div>
 </body>
 </html>

@@ -1,15 +1,15 @@
-package com.integracaomultimercado.model.ofertas;
+package com.integracaomultimercado.model.response;
 
-import com.integracaomultimercado.model.response.StatusCotacao;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class ResponseOfertas implements Serializable {
+public class CotacaoRetorno implements Serializable {
 
     private Integer numeroCotacao;
     private List<StatusCotacao> statusCotacao;
     private String dataCriacao;
+    private List<Orcamento> orcamentos;
 }

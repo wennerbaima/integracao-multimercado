@@ -4,12 +4,15 @@ import com.integracaomultimercado.model.DominioNPaginado;
 import com.integracaomultimercado.model.DominioPaginado;
 import com.integracaomultimercado.model.PessoaCongenerePaginado;
 import com.integracaomultimercado.model.ofertas.RequestOfertas;
-import com.integracaomultimercado.model.ofertas.ResponseOfertas;
+import com.integracaomultimercado.model.parcelas.PlanoParcelamentoImpressao;
+import com.integracaomultimercado.model.response.CotacaoRetorno;
+import com.integracaomultimercado.model.transmissao.CotacaoDadosProposta;
+import com.integracaomultimercado.model.transmissao.ProtocoloRetorno;
 import com.integracaomultimercado.oauthfeign.OAuthFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * CLIENTE HTTP UTILIZANDO FEIGN
@@ -49,5 +52,17 @@ public interface MultiMercadoClient {
     String getVeiculo();
 
     @PostMapping("/ofertas/cotacoes")
-    ResponseOfertas getOfertas(@RequestBody RequestOfertas requestOfertas);
+    CotacaoRetorno getOfertas(@RequestBody RequestOfertas requestOfertas);
+
+    @GetMapping("/ofertas/cotacoes/{numeroCotacao}/orcamentos/{codigoOrcamento}/parcelas")
+    List<PlanoParcelamentoImpressao> getParcelas(@PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigoOrcamento") Integer codigoOrcamento);
+
+    @GetMapping("/ofertas/cotacoes/{numeroCotacao}/protocolos")
+    ProtocoloRetorno consultaProtocolo(@PathVariable("numeroCotacao") Integer numeroCotacao);
+
+    @PostMapping("/ofertas/cotacoes/{numeroCotacao}/orcamentos/{codigo}/propostas")
+    String gravaProposta(@RequestBody CotacaoDadosProposta cotacao, @PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
+
+    @PutMapping("/ofertas/cotacoes/{numeroCotacao}/orcamentos/{codigo}/propostas")
+    String transmiteProposta(@PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
 }

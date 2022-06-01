@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Planos Parcelamento</title>
+</head>
+<body>
+    <div th:each="plano : ${planosParcelamento}">
+        <span><b>Código Forma de Pagamento:</b> </span><span th:text="${plano.codigoFormaPagamento}"></span><br/>
+        <span><b>Tipo de Classe Cálculo Prêmio:</b> </span><span th:text="${plano.tipoClasseCalculoPremio}"></span><br/>
+        <span><b>Descrição Forma de Pagamento:</b> </span><span th:text="${plano.descricaoFormaPagamento}"></span><br/>
+        <span><b>Ordenação:</b> </span><span th:text="${plano.ordenacao}"></span><br/>
+        <div th:each="parcelamento : ${plano.parcelamentos}">
+            <span><b>Número:</b> </span><span th:text="${parcelamento.numero}"></span><br/>
+            <span><b>Valor:</b> </span><span th:text="${parcelamento.valor}"></span><br/>
+            <span><b>Descrição:</b> </span><span th:text="${parcelamento.descricao}"></span><br/>
+            <span><b>Juros:</b> </span><span th:text="${parcelamento.juros}"></span><br/>
+            <span><b>Encargos:</b> </span><span th:text="${parcelamento.encargos}"></span><br/>
+        </div>
+        <br/>
+    </div>
+</body>
+</html>
