@@ -7,6 +7,7 @@ import com.integracaomultimercado.model.ofertas.RequestOfertas;
 import com.integracaomultimercado.model.parcelas.PlanoParcelamentoImpressao;
 import com.integracaomultimercado.model.response.CotacaoRetorno;
 import com.integracaomultimercado.model.transmissao.CotacaoDadosProposta;
+import com.integracaomultimercado.model.transmissao.PropostaRetorno;
 import com.integracaomultimercado.model.transmissao.ProtocoloRetorno;
 import com.integracaomultimercado.oauthfeign.OAuthFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -61,8 +62,17 @@ public interface MultiMercadoClient {
     ProtocoloRetorno consultaProtocolo(@PathVariable("numeroCotacao") Integer numeroCotacao);
 
     @PostMapping("/ofertas/cotacoes/{numeroCotacao}/orcamentos/{codigo}/propostas")
-    String gravaProposta(@RequestBody CotacaoDadosProposta cotacao, @PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
+    PropostaRetorno gravaProposta(@RequestBody CotacaoDadosProposta cotacao, @PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
 
     @PutMapping("/ofertas/cotacoes/{numeroCotacao}/orcamentos/{codigo}/propostas")
-    String transmiteProposta(@PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
+    PropostaRetorno transmiteProposta(@PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
+
+    @PostMapping("/ofertas/cotacoes/{numeroCotacao}/orcamentos/{codigo}/propostas/transmissoes")
+    PropostaRetorno gravaTransmiteProposta(@RequestBody CotacaoDadosProposta cotacao, @PathVariable("numeroCotacao") Integer numeroCotacao, @PathVariable("codigo") Integer codigo);
+
+    @GetMapping("/ofertas/cotacoes/{numeroCotacao}/impressoes")
+    String consultaOrcamentos(@PathVariable Integer numeroCotacao);
+
+    @PostMapping("/ofertas/cotacoes/{numeroCotacao}/impressoes")
+    String solicitaImpressao();
 }

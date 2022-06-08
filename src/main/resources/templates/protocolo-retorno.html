@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Protocolo status da transmissão</title>
+</head>
+<body>
+<span><b>Status:</b> </span><span th:text="${protocoloRetorno.status}"></span><br/>
+<span><b>PROPOSTA:</b></span><br/>
+<span><b>Origem:</b> </span><span th:text="${protocoloRetorno.proposta.origem}"></span><br/>
+<span><b>Número:</b> </span><span th:text="${protocoloRetorno.proposta.numero}"></span><br/>
+<!--
+<span><b>APÓLICE:</b></span><br/>
+<span><b>Sucursal:</b> </span><span th:text="${protocoloRetorno.apolice.sucursal}"></span>
+<span><b>Número:</b> </span><span th:text="${protocoloRetorno.apolice.numero}"></span><br/>
+<span><b>Número Endosso:</b> </span><span th:text="${protocoloRetorno.apolice.numeroEndosso}"></span><br/>
+-->
+</body>
+</html>

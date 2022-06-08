@@ -6,6 +6,7 @@ import com.integracaomultimercado.model.PessoaCongenere;
 import com.integracaomultimercado.model.ofertas.RequestOfertas;
 import com.integracaomultimercado.model.parcelas.PlanoParcelamentoImpressao;
 import com.integracaomultimercado.model.response.CotacaoRetorno;
+import com.integracaomultimercado.model.transmissao.CotacaoDadosProposta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +56,7 @@ public class BaseController {
     public String getOfetas(@ModelAttribute RequestOfertas requestOfertas, Model model) {
         CotacaoRetorno cotacaoRetorno = multiMercadoClient.getOfertas(requestOfertas);
         model.addAttribute("cotacaoRetorno", cotacaoRetorno);
-        return "result.html";
+        return "melhores-ofertas.html";
     }
 
     @GetMapping("/parcelas/cotacao/{numeroCotacao}/orcamento/{codigoOrcamento}")
@@ -63,5 +64,11 @@ public class BaseController {
         List<PlanoParcelamentoImpressao> planosParcelamento = multiMercadoClient.getParcelas(numeroCotacao, codigoOrcamento);
         model.addAttribute("planosParcelamento", planosParcelamento);
         return "planos-parcelamento.html";
+    }
+
+    @GetMapping("/transmissao-proposta")
+    public String showFormularioTransmissao(Model model) {
+        model.addAttribute("cotacaoDadosProposta", new CotacaoDadosProposta());
+        return "transmissao-proposta.html";
     }
 }

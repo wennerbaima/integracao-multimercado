@@ -9,6 +9,6 @@ public class ProtocoloRetorno implements Serializable {
 
     private String status;
     private Proposta proposta;
-    private Apolice apolice;
+    //private Apolice apolice;
 
 }

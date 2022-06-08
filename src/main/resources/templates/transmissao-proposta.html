@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Gravação/Transmissão de proposta</title>
+</head>
+<body>
+<div class="container">
+    <form action="#" th:action="@{/ofertas/cotacoes/841070/orcamentos/1/propostas}" method="post" th:object="${cotacaoDadosProposta}">
+        <div class="row">
+            <div class="col">
+                <label>Número Cotação</label>
+                <input type="number" class="form-control" th:field="*{numeroCotacao}" />
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <h4>Segurado</h4>
+            <div class="col">
+                <label>País nascimento</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.paisNascimento.codigo}" />
+            </div>
+            <div class="col">
+                <label>Ocupação</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.ocupacao.codigo}" />
+            </div>
+            <div class="col">
+                <label>Faixa renda mensal</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.faixaRendaMensal.codigo}" />
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <h4>Documentos</h4>
+            <div class="col">
+                <label>Tipo Identificação</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.documentos[0].tipoIdentificacao.codigo}" />
+            </div>
+            <div class="col">
+                <label>Número Documento</label>
+                <input type="text" class="form-control" th:field="*{segurado.pessoa.documentos[0].numeroDocumento}" />
+            </div>
+            <div class="col">
+                <label>Órgão Emissor</label>
+                <input type="text" class="form-control" th:field="*{segurado.pessoa.documentos[0].orgaoEmissor.codigo}" />
+            </div>
+            <div class="col">
+                <label>Data Expedição</label>
+                <input type="text" class="form-control" th:field="*{segurado.pessoa.documentos[0].dataExpedicao}" />
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <label>Tipo Vínculo Pep</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.tipoVinculoPep.codigo}" />
+            </div>
+        </div>
+        <!--<div class="row">
+            <h4>Pessoas Ped</h4>
+            <div class="col">
+                <label>Grau Parentesco</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.pessoasPep[0].grauParentesco.codigo}" />
+            </div>
+            <div class="col">
+                <label>Cpf Pessoa Relacionamento</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.pessoasPep[0].cpfPessoaRelacionamento}" />
+            </div>
+            <div class="col">
+                <label>Dígito Cpf Pessoa Relacionamento</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.pessoasPep[0].digitoCpfPessoaRelacionamento}" />
+            </div>
+            <div class="col">
+                <label>Nome Pessoa Relacionamento</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.pessoasPep[0].nomePessoaRelacionamento}" />
+            </div>
+            <div class="col">
+                <label>Dígito Cpf Pessoa Relacionamento</label>
+                <input type="number" class="form-control" th:field="*{segurado.pessoa.pessoasPep[0].digitoCpfPessoaRelacionamento}" />
+            </div>
+        </div>-->
+        <br/>
+        <button type="submit" class="btn btn-primary">Gravar Proposta</button>
+    </form>
+</body>
+</html>
